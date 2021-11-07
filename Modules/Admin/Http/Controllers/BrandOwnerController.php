@@ -33,9 +33,14 @@ class BrandOwnerController extends Controller
     {
         $input=$request->except('avatar');
         $brand_owner=BrandOwner::create($input);
-        if ($request['avatar']){
-            $brand_owner->update(['avatar'=>$request['avatar']]);
+        try {
+            if ($request['avatar']){
+                $brand_owner->update(['avatar'=>$request['avatar']]);
+            }
+        }catch (\Exception $e){
+
         }
+
         return redirect()->route('admin.brand_owner.index');
     }
 
