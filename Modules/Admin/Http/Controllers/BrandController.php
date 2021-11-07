@@ -35,9 +35,14 @@ class BrandController extends Controller
     {
         $input=$request->except('image');
         $brand=Brand::create($input);
-        if ($request['image']){
-            $brand->update(['image'=>$request['image']]);
+        try {
+            if ($request['image']){
+                $brand->update(['image'=>$request['image']]);
+            }
+        }catch (\Exception $e){
+
         }
+
         return redirect()->route('admin.brand.index');
     }
 
