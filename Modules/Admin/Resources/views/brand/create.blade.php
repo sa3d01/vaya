@@ -32,6 +32,10 @@
                             <input required type="text" class="form-control"  name="title_ar" />
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Description of brand ar</label>
+                            <textarea required name="description_ar" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Commercial name</label>
                             <input required type="text" class="form-control" name="commercial_name"  />
                         </div>
@@ -64,6 +68,10 @@
                         <div class="form-group">
                             <label class="control-label">Name of brand en</label>
                             <input required type="text" class="form-control"  name="title_en" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description of brand en</label>
+                            <textarea required name="description_en" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commercial number</label>

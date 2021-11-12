@@ -17,6 +17,8 @@ class Brand extends Model implements HasMedia
         'location_id',
         'title_ar',
         'title_en',
+        'description_ar',
+        'description_en',
         'commercial_name',
         'commercial_num',
         'start_contract',

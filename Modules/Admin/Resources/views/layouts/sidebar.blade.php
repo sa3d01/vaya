@@ -47,6 +47,20 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-qrcode-scan"></i>
+                        <span>Promo Code</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="{{route('admin.promo_code.index')}}">Promo Codes</a>
+                        </li>
+                       <li>
+                            <a href="{{route('admin.promo_code.create')}}">Add Promo Code</a>
+                        </li>
+                    </ul>
+                </li>
 
 
 

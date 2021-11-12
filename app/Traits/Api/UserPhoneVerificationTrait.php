@@ -20,5 +20,18 @@ trait UserPhoneVerificationTrait
         //todo:: send-sms
         return $data;
     }
+    protected function createPhoneVerificationCodeForClient($user)
+    {
+        $token = 2022;
+        $data = [
+            'client_id' => $user->id,
+            'phone' => $user->phone,
+            'activation_code' => $token,
+            'expires_at' => Carbon::now()->addMinutes(10),
+        ];
+        PhoneVerificationCode::create($data);
+        //todo:: send-sms
+        return $data;
+    }
 
 }

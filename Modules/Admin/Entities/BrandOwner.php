@@ -62,7 +62,7 @@ class BrandOwner extends Model implements HasMedia
 
     public function brand()
     {
-        return $this->belongsTo(BrandOwner::class);
+        return $this->hasOne(Brand::class);
     }
 
 }

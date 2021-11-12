@@ -39,16 +39,14 @@
                     </div>
                 </div>
             </div>
-{{--            <div class="col-lg-12">--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div id="map" class="polygon-map gmaps"></div>--}}
-{{--                        <input type="hidden" id="Form-field-Zone-area" name="polygon">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-
-{{--            </div>--}}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="map" class="polygon-map gmaps"></div>
+                        <input type="hidden" id="Form-field-Zone-area" name="polygon">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="form-group">

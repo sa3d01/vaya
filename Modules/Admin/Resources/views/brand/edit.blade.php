@@ -33,6 +33,10 @@
                             <input value="{{$row->title_ar}}" required type="text" class="form-control"  name="title_ar" />
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Description of brand ar</label>
+                            <textarea required name="description_ar" class="form-control">{!! $row->desciption_ar !!}</textarea>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Commercial name</label>
                             <input value="{{$row->commercial_name}}" required type="text" class="form-control" name="commercial_name"  />
                         </div>
@@ -65,6 +69,10 @@
                         <div class="form-group">
                             <label class="control-label">Name of brand en</label>
                             <input value="{{$row->title_en}}" required type="text" class="form-control"  name="title_en" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description of brand en</label>
+                            <textarea required name="description_en" class="form-control">{!! $row->desciption_en !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commercial number</label>

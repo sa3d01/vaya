@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Brand\Transformers;
+namespace Modules\Client\Transformers;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BrandLoginDTO extends JsonResource
+class ClientLoginDTO extends JsonResource
 {
     public function toArray($request)
     {
-        $tokenResult = $this->createToken('Brand');
+        $tokenResult = $this->createToken('Client');
         $tokenResult->token->expires_at = Carbon::now()->addWeeks(5);
         return [
             "user" => new ClientDTO($this),

@@ -12,5 +12,5 @@
 */
 
 Route::prefix('client')->group(function() {
-    Route::get('/', 'ClientController@index');
+    Route::get('/', 'AddressController@index');
 });

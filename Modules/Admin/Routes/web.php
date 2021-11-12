@@ -12,8 +12,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
     });
-    Route::get('/profile', 'HomeController@profile')->name('profile');
-    Route::put('/profile', 'HomeController@updateProfile')->name('profile.update');
+    Route::get('/profile', 'AdminController@profile')->name('profile');
+    Route::put('/profile', 'AdminController@updateProfile')->name('profile.update');
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('brand_owner/{id}/ban', 'BrandOwnerController@ban')->name('brand_owner.ban');
@@ -33,4 +33,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('slider', 'SliderController');
 
     Route::resource('employee', 'EmployeeController');
+
+    Route::get('promo_code/{id}/ban', 'PromoCodeController@ban')->name('promo_code.ban');
+    Route::get('promo_code/{id}/activate', 'PromoCodeController@activate')->name('promo_code.activate');
+    Route::resource('promo_code', 'PromoCodeController');
 });

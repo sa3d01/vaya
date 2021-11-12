@@ -20,6 +20,8 @@ class CreateBrandsTable extends Migration
             $table->unsignedBigInteger('location_id')->nullable();
             $table->string('title_ar')->nullable();
             $table->string('title_en')->nullable();
+            $table->text('description_ar')->nullable();
+            $table->text('description_en')->nullable();
             $table->string('commercial_name')->nullable();
             $table->string('commercial_num')->nullable();
             $table->timestamp('start_contract')->nullable();

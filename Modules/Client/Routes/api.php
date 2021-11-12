@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Brand\Http\Middleware\CheckApiToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,21 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'client-v1',
 ], function () {
-    Route::get('/', function (){
-        return response()->json('client api');
+    // AUTH
+    Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function () {
+        Route::post('register', 'AuthController@Register');
+        Route::post('/', 'AuthController@checkAuth');
+        Route::post('resend-phone-verification', 'VerifyController@resendPhoneVerification');
+        Route::post('verify', 'VerifyController@verify');
+        Route::post('logout', 'VerifyController@logout')->middleware(CheckApiToken::class);
+        Route::put('update', 'AuthController@updateProfile')->middleware(CheckApiToken::class);
+        Route::post('update-avatar', 'AuthController@updateAvatar')->middleware(CheckApiToken::class);
     });
+    //client addresses
+    Route::resource('address', 'AddressController');
+
+    Route::get('brand', 'BrandController@index');
+    Route::get('brand/{id}/service', 'BrandController@brandServices');
+
+
 });
