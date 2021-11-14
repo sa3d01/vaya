@@ -3,7 +3,6 @@
 namespace Modules\Brand\Transformers;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\Brand\Entities\BrandOwner;
 
 class BrandLoginDTO extends JsonResource
 {
@@ -12,7 +11,7 @@ class BrandLoginDTO extends JsonResource
         $tokenResult = $this->createToken('Brand');
         $tokenResult->token->expires_at = Carbon::now()->addWeeks(5);
         return [
-            "user" => new BrandOwner($this),
+            "user" => new BrandOwnerDTO($this),
             "settings" => [
                 'banned' => (boolean)$this->banned,
             ],
