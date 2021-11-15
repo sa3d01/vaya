@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->unsignedInteger('period')->nullable();
             $table->unsignedInteger('price')->default(0);
             $table->json('shifts')->nullable();
             $table->timestamps();

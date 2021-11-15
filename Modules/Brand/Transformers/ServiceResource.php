@@ -14,7 +14,8 @@ class ServiceResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description??"",
             'price' => (double)$this->price,
-            'shifts' => $this->shifts,
+            'period' => (int)$this->period,
+            'shifts'=>(array)$this->shifts,
             'technicals' => BrandEmployeeDTO::collection($this->technicals),
         ];
     }

@@ -33,5 +33,8 @@ Route::group([
     Route::get('brand', 'BrandController@index');
     Route::get('brand/{id}/service', 'BrandController@brandServices');
 
+    Route::get('configs', 'GeneralController@configs');
+    Route::post('check-promo-code', 'OrderController@checkPromoCode');
+    Route::post('order', 'OrderController@store');
 
 });

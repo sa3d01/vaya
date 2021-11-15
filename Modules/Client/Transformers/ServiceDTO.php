@@ -13,6 +13,8 @@ class ServiceDTO extends JsonResource
             'name' => $this->name,
             'description' => $this->description ?? "",
             'price' => (double)$this->price,
+            'period' => (int)$this->period,
+            'shifts'=>(array)$this->shifts
         ];
     }
 }

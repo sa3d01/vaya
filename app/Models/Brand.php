@@ -28,4 +28,8 @@ class Brand extends Model implements HasMedia
     {
         return $this->hasMany(Service::class);
     }
+    public function brand_owner()
+    {
+        return $this->belongsTo(BrandOwner::class);
+    }
 }

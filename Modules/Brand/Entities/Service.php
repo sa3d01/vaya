@@ -13,6 +13,7 @@ class Service extends Model
         'brand_id',
         'name',
         'description',
+        'period',
         'price',
         'shifts',
     ];

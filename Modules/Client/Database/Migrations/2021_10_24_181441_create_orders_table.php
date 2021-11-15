@@ -24,12 +24,11 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('brand_employee_id')->nullable();
             $table->foreign('brand_employee_id')->references('id')->on('brand_employees');
             $table->unsignedBigInteger('service_id')->nullable();
-//            $table->foreign('service_id')->references('id')->on('services');
             $table->unsignedBigInteger('promo_code_id')->nullable();
-//            $table->foreign('promo_code_id')->references('id')->on('promo_codes');
             $table->enum('created_by',['admin','client','brand'])->default('client');
             $table->unsignedBigInteger('price')->default(0);
             $table->timestamp('date')->nullable();
+            $table->string('time')->nullable();
             $table->enum('status',['in_progress','completed','cancelled'])->default('in_progress');
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();

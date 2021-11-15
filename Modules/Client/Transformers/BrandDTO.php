@@ -9,6 +9,7 @@ class BrandDTO extends JsonResource
     {
         return [
             'id' => (int)$this->id,
+            'brand_owner'=>$this->brand_owner->name,
             'title' => [
                 'ar' => $this->title_ar??"",
                 'en' => $this->title_en??""

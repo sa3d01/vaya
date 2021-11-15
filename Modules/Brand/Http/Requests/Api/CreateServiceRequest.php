@@ -20,6 +20,7 @@ class CreateServiceRequest extends ApiMasterRequest
             'name' => 'required|string|max:90',
             'description' => 'required|string|max:255',
             'price' => 'required',
+            'period' => 'nullable',
             'shifts' => 'required|array',
             'technicals' => 'required|array',
         ];
