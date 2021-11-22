@@ -17,7 +17,6 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">مستخدمي النظام</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-selection-marker"></i>
@@ -30,6 +29,17 @@
                         <li><a href="{{route('admin.brand_owner.create')}}">Add Brand Owner</a></li>
                         <li><a href="{{route('admin.employee.index')}}">Employee</a></li>
                         <li><a href="{{route('admin.slider.index')}}">Slider</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-cart-plus"></i>
+                        <span>Order</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="{{route('admin.order.index')}}">Orders</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="menu-title">settings</li>

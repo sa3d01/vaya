@@ -2,6 +2,7 @@
 
 namespace Modules\Brand\Transformers;
 
+use App\Models\Order;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ServiceResource extends JsonResource
@@ -17,6 +18,7 @@ class ServiceResource extends JsonResource
             'period' => (int)$this->period,
             'shifts'=>(array)$this->shifts,
             'technicals' => BrandEmployeeDTO::collection($this->technicals),
+            'orders_count'=>Order::where('service_id',$this->id)->count()
         ];
     }
 }

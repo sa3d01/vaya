@@ -10,8 +10,16 @@ use Modules\Brand\Entities\BrandEmployee;
 class Service extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'brand_id',
+        'name',
+        'description',
+        'period',
+        'price',
+        'shifts',
+    ];
     protected $casts=[
-        'shifts'=>'array'
+        'shifts'=>'json'
     ];
     public function technicals()
     {

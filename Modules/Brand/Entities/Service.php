@@ -18,7 +18,7 @@ class Service extends Model
         'shifts',
     ];
     protected $casts=[
-        'shifts'=>'array'
+        'shifts'=>'json'
     ];
     public function technicals()
     {

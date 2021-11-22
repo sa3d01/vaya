@@ -37,4 +37,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('promo_code/{id}/ban', 'PromoCodeController@ban')->name('promo_code.ban');
     Route::get('promo_code/{id}/activate', 'PromoCodeController@activate')->name('promo_code.activate');
     Route::resource('promo_code', 'PromoCodeController');
+
+    Route::resource('order', 'OrderController');
+    Route::get('order/{id}/chat', 'OrderController@chat')->name('order.chat');
+    Route::get('order/{id}/invoice', 'OrderController@invoice')->name('order.invoice');
+
 });

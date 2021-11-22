@@ -10,6 +10,8 @@ class Order extends Model
     use HasFactory;
     protected $fillable=[
         'client_id',
+        'client_name',
+        'client_phone',
         'client_address_id',
         'brand_id',
         'brand_employee_id',
@@ -18,8 +20,9 @@ class Order extends Model
         'created_by',
         'price',
         'date',
+        'time',
         'status',
-        'cancelled_at'
+        'cancelled_at',
     ];
 
     public function client()

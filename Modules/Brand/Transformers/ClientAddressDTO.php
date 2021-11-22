@@ -1,21 +1,20 @@
 <?php
 
 namespace Modules\Brand\Transformers;
-use App\Models\Order;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BrandEmployeeDTO extends JsonResource
+class ClientAddressDTO extends JsonResource
 {
     public function toArray($request)
     {
         return [
             'id' => (int)$this->id,
             'type' => $this->type,
-            'name' => $this->name,
-            'email' => $this->email ?? "",
+            'name' => $this->name ?? "",
             'phone' => $this->phone,
-            'avatar' => $this->avatar,
-            'orders_count'=>Order::where('brand_employee_id',$this->id)->count()
+            'address' => $this->address,
+            'flat_num' => $this->flat_num ?? "",
+            'floor_num' => $this->floor_num ?? "",
         ];
     }
 }

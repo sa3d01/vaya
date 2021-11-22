@@ -27,14 +27,18 @@ Route::group([
         Route::put('update', 'AuthController@updateProfile')->middleware(CheckApiToken::class);
         Route::post('update-avatar', 'AuthController@updateAvatar')->middleware(CheckApiToken::class);
     });
-    //client addresses
-    Route::resource('address', 'AddressController');
-
-    Route::get('brand', 'BrandController@index');
-    Route::get('brand/{id}/service', 'BrandController@brandServices');
-
     Route::get('configs', 'GeneralController@configs');
-    Route::post('check-promo-code', 'OrderController@checkPromoCode');
-    Route::post('order', 'OrderController@store');
+
+    Route::group(['middleware'=>CheckApiToken::class],function (){
+        //profile
+        Route::resource('address', 'AddressController');
+        //home
+        Route::get('brand', 'BrandController@index');
+        Route::get('brand/{id}/service', 'BrandController@brandServices');
+        //order
+        Route::post('check-promo-code', 'OrderController@checkPromoCode');
+        Route::post('order', 'OrderController@store');
+    });
+
 
 });

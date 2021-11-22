@@ -2,11 +2,13 @@
 
 namespace Modules\Client\Http\Controllers;
 
+use App\Models\ClientAddress;
 use App\Models\Config;
 use App\Models\Order;
 use App\Models\PromoCode;
 use App\Models\Service;
 use Carbon\Carbon;
+use Modules\Brand\Transformers\OrderResource;
 use Modules\Client\Http\Requests\Api\CheckPromoCodeRequest;
 use Modules\Client\Http\Requests\Api\CreateOrderRequest;
 
@@ -43,9 +45,12 @@ class OrderController extends MasterController
     public function store(CreateOrderRequest $request)
     {
         $service=Service::find($request['service_id']);
+        $address=ClientAddress::find($request['address_id']);
         $input=$request->validated();
         $input['client_address_id']=$request['address_id'];
         $input['client_id']=auth('client')->id();
+        $input['client_name']=auth('client')->user()->name;
+        $input['client_phone']=$address->phone;
         $input['brand_id']=$service->brand_id;
         if ($request['promo_code']){
             $promo_code = PromoCode::where(['code'=> $request['promo_code'],'banned'=>false])->first();
@@ -61,7 +66,7 @@ class OrderController extends MasterController
             $input['price']=$service->price;
         }
         $order=Order::create($input);
-        return $this->sendResponse($order);
+        return $this->sendResponse(new OrderResource($order));
     }
 
 

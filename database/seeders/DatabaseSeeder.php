@@ -82,10 +82,13 @@ class DatabaseSeeder extends Seeder
             'description'=>'service desc',
             'price'=>100,
             'shifts'=>[
-                rand(1,12)." AM",
-                rand(1,12)." AM",
-                rand(1,12)." PM",
-                rand(1,12)." PM"
+                "Sunday"=> [
+                    "2 AM"
+                ],
+                "Tuesday"=> [
+                    "2 AM",
+                    "5 PM"
+                ]
             ]
         ]);
         $brand_1_service_1->technicals()->sync($brand_1_technical->id);
@@ -96,10 +99,12 @@ class DatabaseSeeder extends Seeder
             'description'=>'service desc',
             'price'=>100,
             'shifts'=>[
-                rand(1,12)." AM",
-                rand(1,12)." AM",
-                rand(1,12)." PM",
-                rand(1,12)." PM"
+                "Sunday"=> [
+                    "1 AM"
+                ],
+                "Tuesday"=> [
+                    "2 AM",
+                ]
             ]
         ]);
         $brand_1_service_2->technicals()->sync($brand_1_technical->id);
@@ -137,10 +142,13 @@ class DatabaseSeeder extends Seeder
             'description'=>'service desc',
             'price'=>100,
             'shifts'=>[
-                rand(1,12)." AM",
-                rand(1,12)." AM",
-                rand(1,12)." PM",
-                rand(1,12)." PM"
+                "Sunday"=> [
+                    "2 AM"
+                ],
+                "Tuesday"=> [
+                    "2 AM",
+                    "5 PM"
+                ]
             ]
         ]);
         $brand_2_service_1->technicals()->sync($brand_2_technical->id);
