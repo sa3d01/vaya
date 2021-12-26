@@ -31,6 +31,7 @@ Route::group([
 
     Route::group(['middleware'=>CheckApiToken::class],function (){
         //profile
+        Route::get('client/{id}', 'ClientController@profile');
         Route::resource('address', 'AddressController');
         //home
         Route::get('brand', 'BrandController@index');

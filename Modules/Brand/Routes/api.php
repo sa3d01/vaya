@@ -32,6 +32,10 @@ Route::group([
         Route::put('{id}', 'EmployeeController@update');
         Route::delete('{id}', 'EmployeeController@destroy');
     });
+    //Client
+    Route::group(['prefix' => 'client','middleware'=>CheckApiToken::class], function () {
+        Route::get('/{id}', 'ClientController@profile');
+    });
     //Order
     Route::group(['prefix' => 'order','middleware'=>CheckApiToken::class], function () {
         Route::post('/', 'OrderController@store');
