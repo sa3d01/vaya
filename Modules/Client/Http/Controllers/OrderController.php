@@ -14,6 +14,26 @@ use Modules\Client\Http\Requests\Api\CreateOrderRequest;
 
 class OrderController extends MasterController
 {
+    public function serviceShifts($service_id)
+    {
+        $service=Service::find($service_id);
+        $days_count=6;
+        $data=[];
+        for ($i = 0; $i <= $days_count; $i++) {
+            $date = Carbon::now()->addDays($i);
+            $day=$date->format('l');
+            if(array_key_exists($day, $service->shifts)) {
+                $arr['day'] = $date->format('Y/m/d');
+                $arr['times'] = $service->shifts[$day];
+                $data[]=$arr;
+            }else{
+                if($days_count<30){
+                    $days_count++;
+                }
+            }
+        }
+        return $this->sendResponse($data);
+    }
     public function checkPromoCode(CheckPromoCodeRequest $request)
     {
         $promo_code = PromoCode::where(['code'=> $request['promo_code'],'banned'=>false])->first();
