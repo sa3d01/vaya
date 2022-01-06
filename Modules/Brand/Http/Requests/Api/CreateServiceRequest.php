@@ -23,6 +23,7 @@ class CreateServiceRequest extends ApiMasterRequest
             'period' => 'nullable',
             'shifts' => 'required',
             'technicals' => 'required|array',
+            'image' => 'nullable',
         ];
     }
 }

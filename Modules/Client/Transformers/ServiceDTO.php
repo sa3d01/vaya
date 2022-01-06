@@ -26,6 +26,7 @@ class ServiceDTO extends JsonResource
         }
         return [
             'id' => (int)$this->id,
+            'image' => $this->image,
             'name' => $this->name,
             'description' => $this->description ?? "",
             'price' => (double)$this->price,
