@@ -15,7 +15,7 @@ class ServiceResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description??"",
             'price' => (double)$this->price,
-            'period' => (int)$this->period,
+            'period' => (string)$this->period,
             'shifts'=>(array)$this->shifts,
             'technicals' => BrandEmployeeDTO::collection($this->technicals),
             'orders_count'=>Order::where('service_id',$this->id)->count()
