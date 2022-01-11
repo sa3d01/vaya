@@ -21,6 +21,8 @@ class CreateChatsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->text('message')->nullable();
             $table->boolean('read')->nullable()->default(false);
             $table->timestamps();

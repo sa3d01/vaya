@@ -42,7 +42,9 @@ Route::group([
         Route::post('order', 'OrderController@store');
         Route::get('current-orders', 'OrderController@currentOrders');
         Route::get('all-orders', 'OrderController@allOrders');
-
+        //contact-admin
+        Route::get('admin-chat', 'ContactController@adminChat');
+        Route::post('admin-chat', 'ContactController@store');
 
     });
 

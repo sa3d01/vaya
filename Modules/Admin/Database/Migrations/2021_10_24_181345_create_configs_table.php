@@ -16,6 +16,8 @@ class CreateConfigsTable extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('ratio')->default(0);
+            $table->text('about_ar')->nullable();
+            $table->text('about_en')->nullable();
             $table->timestamps();
         });
     }

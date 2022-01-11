@@ -9,6 +9,8 @@ class Config extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'ratio'
+        'ratio',
+        'about_ar',
+        'about_en',
     ];
 }
