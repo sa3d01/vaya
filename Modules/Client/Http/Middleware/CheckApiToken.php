@@ -16,13 +16,13 @@ class CheckApiToken
             return response()->json($response, 401);
         }
         $user = auth('client')->user();
-        if ($request->hasHeader('device_uuid') && $request->header('device_uuid') != $user->device_uuid) {
-            $response = [
-                'status' => 401,
-                'message' => 'Wrong device id..',
-            ];
-            return response()->json($response, 401);
-        }
+//        if ($request->hasHeader('device_uuid') && $request->header('device_uuid') != $user->device_uuid) {
+//            $response = [
+//                'status' => 401,
+//                'message' => 'Wrong device id..',
+//            ];
+//            return response()->json($response, 401);
+//        }
         if ($user->banned == true) {
             $response = [
                 'status' => 401,
