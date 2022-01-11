@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Brand\Http\Middleware\CheckApiToken;
+use Modules\Client\Http\Middleware\CheckApiToken;
 
 /*
 |--------------------------------------------------------------------------
