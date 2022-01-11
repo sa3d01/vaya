@@ -40,6 +40,10 @@ Route::group([
         Route::get('service/{id}/shifts', 'OrderController@serviceShifts');
         Route::post('check-promo-code', 'OrderController@checkPromoCode');
         Route::post('order', 'OrderController@store');
+        Route::get('current-orders', 'OrderController@currentOrders');
+        Route::get('all-orders', 'OrderController@allOrders');
+
+
     });
 
 

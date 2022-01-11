@@ -89,5 +89,17 @@ class OrderController extends MasterController
         return $this->sendResponse(new OrderResource($order));
     }
 
+    public function currentOrders()
+    {
+        $client=auth('client')->user();
+        $orders=Order::where(['client_id'=>$client->id,'status'=>'in_progress'])->latest()->get();
+        return $this->sendResponse(OrderResource::collection($orders));
+    }
 
+    public function allOrders()
+    {
+        $client=auth('client')->user();
+        $orders=Order::where('client_id',$client->id)->where('status','!=','in_progress')->latest()->get();
+        return $this->sendResponse(OrderResource::collection($orders));
+    }
 }
