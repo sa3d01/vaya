@@ -16,6 +16,7 @@ class Chat extends Model
         'order_id',
         'message',
         'read',
+        'sent_by'
     ];
     public function client()
     {

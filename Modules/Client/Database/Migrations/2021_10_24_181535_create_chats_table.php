@@ -25,6 +25,7 @@ class CreateChatsTable extends Migration
             $table->foreign('admin_id')->references('id')->on('admins');
             $table->text('message')->nullable();
             $table->boolean('read')->nullable()->default(false);
+            $table->enum('sent_by',['client','brand','admin'])->default('client');
             $table->timestamps();
         });
     }
