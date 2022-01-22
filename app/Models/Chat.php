@@ -32,6 +32,6 @@ class Chat extends Model
     }
     public function brand()
     {
-        return $this->belongsTo(BrandOwner::class,'brand_id','id');
+        return $this->belongsTo(Brand::class);
     }
 }
