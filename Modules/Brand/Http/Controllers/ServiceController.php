@@ -3,6 +3,8 @@
 namespace Modules\Brand\Http\Controllers;
 
 
+use App\Models\Order;
+use Illuminate\Http\Request;
 use Modules\Brand\Entities\Brand;
 use Modules\Brand\Entities\Service;
 use Modules\Brand\Http\Requests\Api\CreateServiceRequest;
@@ -11,10 +13,16 @@ use Modules\Brand\Transformers\ServiceResource;
 
 class ServiceController extends MasterController
 {
-    public function index()
+    public function index(Request $request)
     {
         $brand = Brand::where('brand_owner_id', auth('brand')->id())->firstOrFail();
-        return $this->sendResponse(ServiceResource::collection($brand->services));
+        if ($request['date']){
+            $service_ids=Order::where(['brand_id'=>$brand->id])->where('date',$request['date'])->pluck('service_id');
+            $services=Service::whereIn('id',$service_ids)->get();
+        }else{
+            $services=$brand->services;
+        }
+        return $this->sendResponse(ServiceResource::collection($services));
     }
 
     public function store(CreateServiceRequest $request)

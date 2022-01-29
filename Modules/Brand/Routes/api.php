@@ -14,6 +14,7 @@ Route::group([
         Route::put('update', 'AuthController@updateProfile')->middleware(CheckApiToken::class);
         Route::post('update-avatar', 'AuthController@updateAvatar')->middleware(CheckApiToken::class);
     });
+    Route::get('configs', 'GeneralController@configs');
     // Slider
     Route::group(['prefix' => 'slider','middleware'=>CheckApiToken::class], function () {
         Route::get('/', 'SliderController@index');
@@ -32,6 +33,10 @@ Route::group([
         Route::put('{id}', 'EmployeeController@update');
         Route::delete('{id}', 'EmployeeController@destroy');
     });
+    //Brand
+    Route::group(['prefix' => 'brand_owner','middleware'=>CheckApiToken::class], function () {
+        Route::get('/{id}', 'BrandController@profile');
+    });
     //Client
     Route::group(['prefix' => 'client','middleware'=>CheckApiToken::class], function () {
         Route::get('/{id}', 'ClientController@profile');
@@ -39,8 +44,13 @@ Route::group([
     //Order
     Route::group(['prefix' => 'order','middleware'=>CheckApiToken::class], function () {
         Route::post('/', 'OrderController@store');
+        Route::get('/', 'OrderController@list');
     });
+    Route::get('order-chat/{orderId}', 'OrderChatController@messages');
+    Route::post('order-chat', 'OrderChatController@store');
     Route::get('service/{id}/order', 'OrderController@serviceOrders');
-
+    //contact-admin
+    Route::get('admin-chat', 'ContactController@adminChat');
+    Route::post('admin-chat', 'ContactController@store');
 });
 

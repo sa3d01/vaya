@@ -12,5 +12,7 @@ class Config extends Model
         'ratio',
         'about_ar',
         'about_en',
+        'policy_ar',
+        'policy_en',
     ];
 }

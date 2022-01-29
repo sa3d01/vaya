@@ -22,6 +22,7 @@ class OrderResource extends JsonResource
             'id' => (int)$this->id,
             'created_by' => $this->created_by??'brand',
             'client' => $this->client_id ? new ClientDTO($this->client) : new Object_(),
+            'client_address' => $this->client_address ? new ClientAddressDTO($this->client_address) : new Object_(),
             'client_name' => $this->client_name,
             'client_phone' => $this->client_phone,
             'brand_employee' => $this->brand_employee ? new BrandEmployeeDTO($this->brand_employee) : new Object_(),

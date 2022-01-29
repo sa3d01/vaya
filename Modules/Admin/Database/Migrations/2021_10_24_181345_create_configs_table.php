@@ -18,6 +18,8 @@ class CreateConfigsTable extends Migration
             $table->unsignedInteger('ratio')->default(0);
             $table->text('about_ar')->nullable();
             $table->text('about_en')->nullable();
+            $table->text('policy_ar')->nullable();
+            $table->text('policy_en')->nullable();
             $table->timestamps();
         });
     }
