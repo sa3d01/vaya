@@ -45,10 +45,7 @@ class OrderController extends MasterController
             'brand_employee_id'=>$request['brand_employee_id'],
             'status'=>'in_progress'
         ]);
-        $brand = Brand::find(auth('employee')->user()->brand_id);
-        $orders=Order::where(['brand_id'=>$brand->id]);
-        $orders=$orders->get();
-        return $this->sendResponse(OrderResource::collection($orders));
+        return $this->sendResponse(new OrderResource($order));
     }
     public function cancel($id,Request $request)
     {
@@ -59,20 +56,14 @@ class OrderController extends MasterController
             'cancelled_by'=>auth('employee')->id(),
             'cancel_reason'=>$request['cancelled_reason'],
         ]);
-        $brand = Brand::find(auth('employee')->user()->brand_id);
-        $orders=Order::where(['brand_id'=>$brand->id]);
-        $orders=$orders->get();
-        return $this->sendResponse(OrderResource::collection($orders));
+        return $this->sendResponse(new OrderResource($order));
     }
-    public function complete($id,Request $request)
+    public function complete($id)
     {
         $order=Order::find($id);
         $order->update([
             'status'=>'completed',
         ]);
-        $brand = Brand::find(auth('employee')->user()->brand_id);
-        $orders=Order::where(['brand_id'=>$brand->id]);
-        $orders=$orders->get();
-        return $this->sendResponse(OrderResource::collection($orders));
+        return $this->sendResponse(new OrderResource($order));
     }
 }
