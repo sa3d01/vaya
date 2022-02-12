@@ -14,6 +14,7 @@ Route::group([
         Route::put('update', 'AuthController@updateProfile')->middleware(CheckApiToken::class);
         Route::post('update-avatar', 'AuthController@updateAvatar')->middleware(CheckApiToken::class);
     });
+
     Route::get('configs', 'GeneralController@configs');
     // Slider
     Route::group(['prefix' => 'slider','middleware'=>CheckApiToken::class], function () {
@@ -34,7 +35,7 @@ Route::group([
         Route::delete('{id}', 'EmployeeController@destroy');
     });
     //Brand
-    Route::group(['prefix' => 'brand_owner','middleware'=>CheckApiToken::class], function () {
+    Route::group(['prefix' => 'brand_employee','middleware'=>CheckApiToken::class], function () {
         Route::get('/{id}', 'BrandController@profile');
     });
     //Client
