@@ -6,11 +6,9 @@ use App\Traits\Api\LoginTrait;
 use App\Traits\Api\UserPhoneVerificationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Brand\Entities\BrandEmployee;
-use Modules\Brand\Entities\BrandOwner;
+use App\Models\BrandEmployee;
 use Modules\Brand\Http\Requests\Api\Auth\AuthRequest;
 use Modules\Brand\Http\Requests\Api\Auth\UpdateProfileRequest;
-use Modules\Brand\Transformers\ClientLoginDTO;
 
 class AuthController extends Controller
 {
