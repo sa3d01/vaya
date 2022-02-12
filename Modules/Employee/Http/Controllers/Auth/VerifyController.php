@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Brand\Http\Controllers\Auth;
+namespace Modules\Employee\Http\Controllers\Auth;
 
 use App\Traits\Api\UserPhoneVerificationTrait;
 use Carbon\Carbon;
@@ -11,6 +11,8 @@ use Modules\Brand\Http\Controllers\MasterController;
 use Modules\Brand\Http\Requests\Api\Auth\AuthRequest;
 use Modules\Brand\Http\Requests\Api\Auth\VerifyPhoneRequest;
 use Modules\Brand\Transformers\BrandLoginDTO;
+use App\Models\BrandEmployee;
+use Modules\Employee\Transformers\EmployeeLoginDto;
 
 class VerifyController extends MasterController
 {
@@ -19,16 +21,16 @@ class VerifyController extends MasterController
     public function resendPhoneVerification(AuthRequest $request): object
     {
         $request->validated();
-        $user = BrandOwner::where('phone', $request['phone'])->first();
-        $this->createPhoneVerificationCodeForBrand($user);
+        $user = BrandEmployee::where(['phone' => $request['phone'],'type'=>'officer'])->first();
+        $this->createPhoneVerificationCodeForEmployee($user);
         return $this->sendResponse([], 'code sent.');
     }
 
     public function verify(VerifyPhoneRequest $request)
     {
-        $user = BrandOwner::where('phone', $request['phone'])->first();
+        $user = BrandEmployee::where(['phone' => $request['phone'],'type'=>'officer'])->first();
         $verificationCode = PhoneVerificationCode::where([
-            'brand_owner_id' => $user->id,
+            'brand_employee_id' => $user->id,
             'phone' => $request['phone'],
             'activation_code' => $request['activation_code'],
         ])->latest()->first();
@@ -43,12 +45,12 @@ class VerifyController extends MasterController
             $verificationCode->update(['verified_at' => $now]);
             $user->update(['phone_verified_at' => $now]);
         });
-        return $this->sendResponse(new BrandLoginDTO($user));
+        return $this->sendResponse(new EmployeeLoginDto($user));
     }
 
     public function logout()
     {
-        $user = BrandOwner::find(auth('brand')->id());
+        $user = BrandEmployee::find(auth('employee')->id());
         $user->tokens->each(function ($token, $key) {
             $token->delete();
         });
