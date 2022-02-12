@@ -12,7 +12,6 @@ class BrandEmployee extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
-    protected $guard = 'employee';
 
     protected $fillable = [
         'brand_id',
