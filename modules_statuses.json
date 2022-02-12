@@ -2,5 +2,6 @@
     "Brand": true,
     "Client": true,
     "Admin": true,
-    "Service": true
+    "Service": true,
+    "Employee": true
 }

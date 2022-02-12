@@ -54,6 +54,11 @@ return [
             'provider' => 'clients',
             'hash' => false,
         ],
+        'employee' => [
+            'driver' => 'passport',
+            'provider' => 'brand_employees',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -89,6 +94,10 @@ return [
         'brands' => [
             'driver' => 'eloquent',
             'model' => \Modules\Brand\Entities\BrandOwner::class,
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => \Modules\Brand\Entities\BrandEmployee::class,
         ],
     ],
 
@@ -128,6 +137,12 @@ return [
         ],
         'brands' => [
             'provider' => 'brands',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'employees' => [
+            'provider' => 'brand_employees',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -11,6 +11,7 @@ class PhoneVerificationCode extends Model
 
     protected $fillable = [
         'brand_owner_id',
+        'brand_employee_id',
         'client_id',
         'phone',
         'activation_code',
