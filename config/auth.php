@@ -56,7 +56,7 @@ return [
         ],
         'employee' => [
             'driver' => 'passport',
-            'provider' => 'brand_employees',
+            'provider' => 'employees',
             'hash' => false,
         ],
     ],
