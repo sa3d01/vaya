@@ -2,6 +2,7 @@
 
 namespace Modules\Brand\Transformers;
 
+use App\Models\Rate;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Client\Transformers\BrandDTO;
@@ -18,6 +19,15 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        $rate=Rate::where('order_id',$this->id)->where('brand_employee_id',null)->latest()->first();
+        if ($rate){
+            $rate_res=[
+                'rate'=>(int)$rate->rate,
+                'comment'=>$rate->comment??""
+            ];
+        }else{
+            $rate_res=new Object_();
+        }
         return [
             'id' => (int)$this->id,
             'created_by' => $this->created_by??'client',
@@ -35,7 +45,8 @@ class OrderResource extends JsonResource
                 'ar' => $this->brand->title_ar??"",
                 'en' => $this->brand->title_en??""
             ],
-            'status'=>$this->status
+            'status'=>$this->status,
+            'rate' => $rate_res,
         ];
     }
 }

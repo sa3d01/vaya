@@ -20,6 +20,7 @@ class OrderController extends MasterController
         $input['created_by']='brand';
         $input['brand_id']=$service->brand_id;
         $input['price']=$service->price;
+        $input['status']='in_progress';
         $order=Order::create($input);
         return $this->sendResponse(new OrderResource($order));
     }

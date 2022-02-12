@@ -6,8 +6,11 @@ use App\Models\ClientAddress;
 use App\Models\Config;
 use App\Models\Order;
 use App\Models\PromoCode;
+use App\Models\Rate;
 use App\Models\Service;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Modules\Brand\Entities\BrandEmployee;
 use Modules\Brand\Transformers\OrderResource;
 use Modules\Client\Http\Requests\Api\CheckPromoCodeRequest;
 use Modules\Client\Http\Requests\Api\CreateOrderRequest;
@@ -102,5 +105,28 @@ class OrderController extends MasterController
         $client=auth('client')->user();
         $orders=Order::where('client_id',$client->id)->where('status','!=','in_progress')->where('status','!=','new')->latest()->get();
         return $this->sendResponse(OrderResource::collection($orders));
+    }
+    public function rateOrder($order_id,Request $request)
+    {
+        $order=Order::find($order_id);
+        Rate::create([
+           'rate'=>$request['rate'],
+           'client_id'=>auth('client')->id(),
+           'order_id'=>$order_id,
+           'comment'=> $request['comment']
+        ]);
+        return $this->sendResponse(new OrderResource($order));
+    }
+    public function rateEmployee($employee_id,$order_id,Request $request)
+    {
+        $order=Order::find($order_id);
+        Rate::create([
+           'rate'=>$request['rate'],
+           'client_id'=>auth('client')->id(),
+           'order_id'=>$order_id,
+           'brand_employee_id'=>$employee_id,
+           'comment'=> $request['comment']
+        ]);
+        return $this->sendResponse(new OrderResource($order));
     }
 }
