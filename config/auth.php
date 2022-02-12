@@ -97,7 +97,7 @@ return [
         ],
         'employees' => [
             'driver' => 'eloquent',
-            'model' => \Modules\Brand\Entities\BrandEmployee::class,
+            'model' => \App\Models\BrandEmployee::class,
         ],
     ],
 
