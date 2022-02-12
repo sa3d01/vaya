@@ -40,8 +40,8 @@ class AuthController extends Controller
     }
     public function updateProfile(UpdateProfileRequest $request)
     {
-        $brand_owner=auth('brand')->user();
-        $brand_owner->update($request->validated());
+        $brand_employee=auth('employee')->user();
+        $brand_employee->update($request->validated());
         $response = [
             'status' => 200,
             'message' => "",
