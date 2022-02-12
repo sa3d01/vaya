@@ -50,7 +50,6 @@ class VerifyController extends MasterController
 
     public function logout()
     {
-        return auth('employee')->id();
         $user = BrandEmployee::find(auth('employee')->id());
         $user->tokens->each(function ($token, $key) {
             $token->delete();

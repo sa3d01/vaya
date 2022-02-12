@@ -32,7 +32,7 @@ class VerifyPhoneRequest extends ApiMasterRequest
     public function rules()
     {
         return [
-            'phone' => 'required|string|max:90|exists:brand_employees',
+            'phone' => 'required|string|max:90',
             'activation_code' => 'required|numeric|max:9999',
         ];
     }
