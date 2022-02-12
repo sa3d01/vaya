@@ -7,8 +7,9 @@ use App\Traits\Api\UserPhoneVerificationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\BrandEmployee;
-use Modules\Brand\Http\Requests\Api\Auth\AuthRequest;
-use Modules\Brand\Http\Requests\Api\Auth\UpdateProfileRequest;
+use Modules\Employee\Http\Requests\Api\Auth\AuthRequest;
+use Modules\Employee\Http\Requests\Api\Auth\UpdateProfileRequest;
+use Modules\Employee\Transformers\EmployeeLoginDto;
 
 class AuthController extends Controller
 {
@@ -44,22 +45,22 @@ class AuthController extends Controller
         $response = [
             'status' => 200,
             'message' => "",
-            'data' => new ClientLoginDTO(auth('brand')->user()),
+            'data' => new EmployeeLoginDto(auth('employee')->user()),
         ];
         return response()->json($response);
     }
 
     public function updateAvatar(Request $request)
     {
-        $brand_owner=auth('brand')->user();
-        $brand_owner->update([
+        $brand_employee=auth('employee')->user();
+        $brand_employee->update([
             'avatar'=>$request->file('avatar')
         ]);
         $response = [
             'status' => 200,
             'message' => "",
             'data' => [
-                "avatar" => $brand_owner->avatar
+                "avatar" => $brand_employee->avatar
             ],
         ];
         return response()->json($response);
