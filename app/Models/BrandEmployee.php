@@ -3,16 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
 use Modules\Brand\Entities\Service;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class BrandEmployee extends Model implements HasMedia
+class BrandEmployee extends Authenticatable implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use HasApiTokens;
+
+    protected $guard = 'employee';
+
     protected $fillable = [
         'brand_id',
         'type',
@@ -28,6 +33,7 @@ class BrandEmployee extends Model implements HasMedia
         'banned',
         'last_ip'
     ];
+
     public function registerMediaConversions($media = null): void
     {
         $this->addMediaConversion('thumb')
@@ -35,6 +41,7 @@ class BrandEmployee extends Model implements HasMedia
             ->height(232)
             ->sharpen(10);
     }
+
     protected function getAvatarAttribute()
     {
         $file = $this->getMedia("brand_employees")->first();
@@ -43,6 +50,7 @@ class BrandEmployee extends Model implements HasMedia
         }
         return asset('images/users/user.jpg');
     }
+
     protected function setAvatarAttribute($image)
     {
         $this->clearMediaCollection("brand_employees");
@@ -53,6 +61,7 @@ class BrandEmployee extends Model implements HasMedia
             ->usingName($fileName)
             ->toMediaCollection("brand_employees");
     }
+
     public function services()
     {
         return $this->belongsToMany(Service::class, "employee_service", "brand_employee_id", "service_id");
