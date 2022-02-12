@@ -8,6 +8,8 @@ use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Brand\Entities\Brand;
+use Modules\Employee\Http\Requests\Api\AssignEmployeeRequest;
+use Modules\Employee\Http\Requests\Api\CancelOrderRequest;
 use Modules\Employee\Http\Requests\Api\CreateOrderRequest;
 use Modules\Brand\Transformers\OrderResource;
 class OrderController extends MasterController
@@ -35,10 +37,10 @@ class OrderController extends MasterController
         if ($request['date']){
             $orders=$orders->where('date',$request['date']);
         }
-        $orders=$orders->get();
+        $orders=$orders->latest()->get();
         return $this->sendResponse(OrderResource::collection($orders));
     }
-    public function assignTechnical($id,Request $request)
+    public function assignTechnical($id,AssignEmployeeRequest $request)
     {
         $order=Order::find($id);
         $order->update([
@@ -47,7 +49,7 @@ class OrderController extends MasterController
         ]);
         return $this->sendResponse(new OrderResource($order));
     }
-    public function cancel($id,Request $request)
+    public function cancel($id,CancelOrderRequest $request)
     {
         $order=Order::find($id);
         $order->update([
