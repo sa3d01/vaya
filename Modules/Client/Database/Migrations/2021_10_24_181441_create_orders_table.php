@@ -31,8 +31,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('price')->default(0);
             $table->timestamp('date')->nullable();
             $table->string('time')->nullable();
-            $table->enum('status',['in_progress','completed','cancelled'])->default('in_progress');
+            $table->enum('status',['new','in_progress','completed','cancelled'])->default('new');
             $table->timestamp('cancelled_at')->nullable();
+            $table->unsignedBigInteger('cancelled_by')->nullable();
+            $table->string('cancel_reason')->nullable();
             $table->timestamps();
         });
     }

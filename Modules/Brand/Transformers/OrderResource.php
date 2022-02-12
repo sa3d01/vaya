@@ -35,6 +35,7 @@ class OrderResource extends JsonResource
                 'ar' => $this->brand->title_ar??"",
                 'en' => $this->brand->title_en??""
             ],
+            'status'=>$this->status
         ];
     }
 }

@@ -72,6 +72,7 @@ class OrderController extends MasterController
         $input['client_name']=auth('client')->user()->name;
         $input['client_phone']=$address->phone;
         $input['brand_id']=$service->brand_id;
+        $input['status']='new';
         if ($request['promo_code']){
             $promo_code = PromoCode::where(['code'=> $request['promo_code'],'banned'=>false])->first();
             $input['promo_code_id']=$promo_code->id;
@@ -92,14 +93,14 @@ class OrderController extends MasterController
     public function currentOrders()
     {
         $client=auth('client')->user();
-        $orders=Order::where(['client_id'=>$client->id,'status'=>'in_progress'])->latest()->get();
+        $orders=Order::where(['client_id'=>$client->id,'status'=>'in_progress'])->orWhere(['client_id'=>$client->id,'status'=>'new'])->latest()->get();
         return $this->sendResponse(OrderResource::collection($orders));
     }
 
     public function allOrders()
     {
         $client=auth('client')->user();
-        $orders=Order::where('client_id',$client->id)->where('status','!=','in_progress')->latest()->get();
+        $orders=Order::where('client_id',$client->id)->where('status','!=','in_progress')->where('status','!=','new')->latest()->get();
         return $this->sendResponse(OrderResource::collection($orders));
     }
 }

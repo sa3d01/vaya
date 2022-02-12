@@ -5,12 +5,11 @@ namespace Modules\Employee\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Brand\Entities\Brand;
 use Modules\Employee\Http\Requests\Api\CreateOrderRequest;
 use Modules\Brand\Transformers\OrderResource;
-
-
 class OrderController extends MasterController
 {
     public function store(CreateOrderRequest $request)
@@ -36,6 +35,43 @@ class OrderController extends MasterController
         if ($request['date']){
             $orders=$orders->where('date',$request['date']);
         }
+        $orders=$orders->get();
+        return $this->sendResponse(OrderResource::collection($orders));
+    }
+    public function assignTechnical($id,Request $request)
+    {
+        $order=Order::find($id);
+        $order->update([
+            'brand_employee_id'=>$request['brand_employee_id'],
+            'status'=>'in_progress'
+        ]);
+        $brand = Brand::find(auth('employee')->user()->brand_id);
+        $orders=Order::where(['brand_id'=>$brand->id]);
+        $orders=$orders->get();
+        return $this->sendResponse(OrderResource::collection($orders));
+    }
+    public function cancel($id,Request $request)
+    {
+        $order=Order::find($id);
+        $order->update([
+            'status'=>'cancelled',
+            'cancelled_at'=>Carbon::now(),
+            'cancelled_by'=>auth('employee')->id(),
+            'cancel_reason'=>$request['cancelled_reason'],
+        ]);
+        $brand = Brand::find(auth('employee')->user()->brand_id);
+        $orders=Order::where(['brand_id'=>$brand->id]);
+        $orders=$orders->get();
+        return $this->sendResponse(OrderResource::collection($orders));
+    }
+    public function complete($id,Request $request)
+    {
+        $order=Order::find($id);
+        $order->update([
+            'status'=>'completed',
+        ]);
+        $brand = Brand::find(auth('employee')->user()->brand_id);
+        $orders=Order::where(['brand_id'=>$brand->id]);
         $orders=$orders->get();
         return $this->sendResponse(OrderResource::collection($orders));
     }

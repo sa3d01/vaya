@@ -46,6 +46,9 @@ Route::group([
     Route::group(['prefix' => 'order','middleware'=>CheckApiToken::class], function () {
         Route::post('/', 'OrderController@store');
         Route::get('/', 'OrderController@list');
+        Route::post('/{id}/assign-technical', 'OrderController@assignTechnical');
+        Route::post('/{id}/cancel', 'OrderController@cancel');
+        Route::post('/{id}/complete', 'OrderController@complete');
     });
     Route::get('order-chat/{orderId}', 'OrderChatController@messages');
     Route::post('order-chat', 'OrderChatController@store');

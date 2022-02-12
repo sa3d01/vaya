@@ -23,6 +23,8 @@ class Order extends Model
         'time',
         'status',
         'cancelled_at',
+        'cancelled_by',
+        'cancel_reason'
     ];
 
     public function client()
