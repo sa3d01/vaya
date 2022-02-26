@@ -70,8 +70,8 @@
                                     @endif
                                 </td>
                                 <td>{{$row->brand_employee?$row->brand_employee->name:'--'}}</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{\App\Models\Rate::where('order_id',$order_id)->value('rate')}}</td>
+                                <td>{{\App\Models\Rate::where('brand_employee_id',$row->brand_employee_id)->value('rate')}}</td>
                                 <td>
                                     <div class="button-list">
                                         <button data-id="{{$row->id}}" data-href="{{ route('admin.order.chat',$row->id) }}" class="btn btn-info waves-effect waves-light">
