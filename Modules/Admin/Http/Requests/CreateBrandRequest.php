@@ -13,6 +13,8 @@ class CreateBrandRequest extends FormRequest
         return [
             'title_ar' => 'required|string|max:255',
             'title_en' => 'required|string|max:255',
+            'description_ar' => 'nullable',
+            'description_en' => 'nullable',
             'commercial_name' => 'nullable|max:255',
             'commercial_num' => 'nullable|max:255',
             'start_contract' => 'nullable|date',
