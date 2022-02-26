@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description of brand ar</label>
-                            <textarea required name="description_ar" class="form-control">{!! $row->desciption_ar !!}</textarea>
+                            <textarea required name="description_ar" class="form-control">{!! $row->description_ar !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commercial name</label>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description of brand en</label>
-                            <textarea required name="description_en" class="form-control">{!! $row->desciption_en !!}</textarea>
+                            <textarea required name="description_en" class="form-control">{!! $row->description_en !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commercial number</label>
