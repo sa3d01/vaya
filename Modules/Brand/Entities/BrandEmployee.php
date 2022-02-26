@@ -61,5 +61,9 @@ class BrandEmployee extends Model implements HasMedia
     {
         return $this->belongsToMany(Service::class, "employee_service", "brand_employee_id", "service_id");
     }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 
 }
