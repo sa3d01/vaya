@@ -37,12 +37,30 @@
                         @foreach($rows as $row)
                             <tr>
                                 <td>{{$row->title_ar}}</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{\App\Models\Order::where(['brand_id'=>$row->id,'created_by'=>'client'])->count()}}</td>
+                                <td>{{\App\Models\Order::where(['brand_id'=>$row->id,'created_by'=>'brand'])->count()}}</td>
+                                <td>{{\App\Models\Order::where(['brand_id'=>$row->id])->count()}}</td>
                                 <td>{{$row->start_contract}}</td>
-                                <td>0/5</td>
-                                <td>0/5</td>
+                                <td>
+                                    @php
+                                    $order_ids=\App\Models\Order::where('brand_id',$row->id)->pulk('id')->toArray();
+                                    @endphp
+                                    @if(\App\Models\Rate::whereIn('order_id',$order_ids)->count('rate')>0)
+                                        {{\App\Models\Rate::whereIn('order_id',$order_ids)->sum('rate') / \App\Models\Rate::whereIn('order_id',$order_ids)->count('rate')}} /5
+                                    @else
+                                        0/5
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                        $employee_ids=\App\Models\BrandEmployee::where('brand_id',$row->id)->pulk('id')->toArray();
+                                    @endphp
+                                    @if(\App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->count('rate')>0)
+                                        {{\App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->sum('rate') / \App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->count('rate')}} /5
+                                    @else
+                                        0/5
+                                    @endif
+                                </td>
                                 <td>{{$row->owner->name}}</td>
                                 <td>{{$row->phone}}</td>
                                 <td>
