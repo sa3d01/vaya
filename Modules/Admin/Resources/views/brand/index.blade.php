@@ -43,7 +43,7 @@
                                 <td>{{$row->start_contract}}</td>
                                 <td>
                                     @php
-                                    $order_ids=\App\Models\Order::where('brand_id',$row->id)->pulk('id')->toArray();
+                                    $order_ids=\App\Models\Order::where('brand_id',$row->id)->pluck('id')->toArray();
                                     @endphp
                                     @if(\App\Models\Rate::whereIn('order_id',$order_ids)->count('rate')>0)
                                         {{\App\Models\Rate::whereIn('order_id',$order_ids)->sum('rate') / \App\Models\Rate::whereIn('order_id',$order_ids)->count('rate')}} /5
@@ -53,7 +53,7 @@
                                 </td>
                                 <td>
                                     @php
-                                        $employee_ids=\App\Models\BrandEmployee::where('brand_id',$row->id)->pulk('id')->toArray();
+                                        $employee_ids=\App\Models\BrandEmployee::where('brand_id',$row->id)->pluck('id')->toArray();
                                     @endphp
                                     @if(\App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->count('rate')>0)
                                         {{\App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->sum('rate') / \App\Models\Rate::whereIn('brand_employee_id',$employee_ids)->count('rate')}} /5
